@@ -1,0 +1,57 @@
+OPTIMUM AI - RUN COMMANDS
+=========================
+
+Open three terminal windows.
+
+TERMINAL 1 - BACKEND
+--------------------
+cd /home/parrot/Desktop/DATA_/Optinum/backend
+set -a
+. ./.env
+set +a
+/home/parrot/Desktop/DATA_/Optinum/backend/venv/bin/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+Backend health check:
+curl http://localhost:8000/api/health
+
+
+TERMINAL 2 - FRONTEND
+---------------------
+cd /home/parrot/Desktop/DATA_/Optinum/frontend
+npm run dev -- --host 0.0.0.0 --port 5173
+
+Open in browser:
+http://localhost:5173
+
+
+TERMINAL 3 - NGROK
+------------------
+ngrok http 8000
+
+Copy the HTTPS Forwarding URL shown by ngrok.
+Example:
+https://your-ngrok-domain.ngrok-free.dev
+
+Set that URL in backend/.env:
+OAUTH_REDIRECT_BASE=https://your-ngrok-domain.ngrok-free.dev
+
+Then restart the backend.
+
+
+NGROK HEALTH CHECK
+------------------
+curl https://your-ngrok-domain.ngrok-free.dev/api/health
+
+
+META CALLBACK URL
+-----------------
+Replace YOUR_NGROK_DOMAIN with the current ngrok hostname:
+
+https://YOUR_NGROK_DOMAIN/api/connections/facebook/oauth/callback
+https://YOUR_NGROK_DOMAIN/api/connections/instagram/oauth/callback
+
+Meta App Domains should contain only:
+YOUR_NGROK_DOMAIN
+
+Do not put real secrets in this file.
+Use backend/.env for secrets and never commit backend/.env.

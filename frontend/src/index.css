@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-ink text-white font-sans antialiased;
+}
+
+.micro {
+  @apply font-mono uppercase tracking-[0.18em] text-[10px] text-salmon;
+}
+
+.card {
+  @apply bg-card border border-line rounded-lg;
+}
+
+.input {
+  @apply w-full bg-transparent border-b border-line focus:border-accent outline-none py-2 text-sm text-white placeholder-salmon/40;
+}
+
+.btn-accent {
+  @apply bg-accent hover:bg-accent2 text-white font-mono text-xs uppercase tracking-wider px-4 py-2 rounded transition-colors;
+}
+
+.btn-salmon {
+  @apply bg-salmon hover:bg-white text-black font-mono text-xs uppercase tracking-wider px-4 py-2 rounded transition-colors;
+}
+
+.btn-ghost {
+  @apply border border-line hover:border-salmon/60 text-salmon font-mono text-[10px] uppercase tracking-wider px-3 py-1.5 rounded transition-colors;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
